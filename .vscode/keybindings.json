@@ -1,0 +1,74 @@
+// This file does not get automatically applied
+// @TODO: Make it work or document how to copy to user keybindings
+[
+  {
+    "key": "cmd+shift+n",
+    "command": "foam-vscode.create-note"
+  },
+
+  {
+    "key": "cmd+l",
+    "command": "workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "alt+cmd+b",
+    "command": "-workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "cmd+l",
+    "command": "-workbench.action.browser.focusUrlInput",
+    "when": "activeEditor == 'workbench.editor.browser'"
+  },
+  {
+    "key": "cmd+l",
+    "command": "-expandLineSelection",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+y",
+    "command": "-chatEditor.action.acceptHunk",
+    "when": "chatEdits.cursorInChangeRange && chatEdits.hasEditorModifications && editorFocus && !chatEdits.isCurrentlyBeingModified || chatEdits.cursorInChangeRange && chatEdits.hasEditorModifications && notebookCellListFocused && !chatEdits.isCurrentlyBeingModified"
+  },
+  {
+    "key": "cmd+y",
+    "command": "markdown.showPreview",
+    "when": "!notebookEditorFocused && editorLangId =~ /^(markdown|prompt|instructions|chatagent|skill)$/"
+  },
+  {
+    "key": "shift+cmd+v",
+    "command": "-markdown.showPreview",
+    "when": "!notebookEditorFocused && editorLangId =~ /^(markdown|prompt|instructions|chatagent|skill)$/"
+  },
+  {
+    "key": "shift+cmd+y",
+    "command": "markdown.showPreviewToSide",
+    "when": "!notebookEditorFocused && editorLangId =~ /^(markdown|prompt|instructions|chatagent|skill)$/"
+  },
+  {
+    "key": "cmd+k v",
+    "command": "-markdown.showPreviewToSide",
+    "when": "!notebookEditorFocused && editorLangId =~ /^(markdown|prompt|instructions|chatagent|skill)$/"
+  },
+  {
+    "key": "shift+cmd+y",
+    "command": "-chatEditor.action.accept",
+    "when": "chatEdits.hasEditorModifications && editorFocus && !chatEdits.isCurrentlyBeingModified || chatEdits.hasEditorModifications && notebookEditorFocused && !chatEdits.isCurrentlyBeingModified"
+  },
+  {
+    "key": "shift+cmd+y",
+    "command": "-workbench.debug.action.toggleRepl",
+    "when": "workbench.panel.repl.view.active"
+  },
+  {
+    "key": "cmd+alt+shift+c",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "commitMsg.autofill",
+        "git.stageAll",
+        "git.commit",
+        "git.push"
+      ]
+    }
+  }
+]

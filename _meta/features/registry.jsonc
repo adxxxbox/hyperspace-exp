@@ -1,0 +1,64 @@
+// Feature registry — dispatch table for AI-invocable tools.
+//
+// How it works:
+//   1. The AI reads this file when in `admin` mode.
+//   2. It matches the user's intent against `triggers` (case-insensitive substring).
+//   3. Ties broken by `priority` (higher wins), then by `name` alphabetical.
+//   4. The AI then reads only the matched `doc` (FEATURE.md), not other features.
+//
+// Adding a feature: drop a folder under `_meta/features/<name>/` with a FEATURE.md
+// and an entry script, then add one entry here. Run vault-check to confirm.
+{
+  "_self": {
+    "version": "1.0",
+    "schema": "feature-registry/1"
+  },
+
+  "features": [
+    {
+      "name": "vault-check",
+      "path": "_meta/features/vault-check/",
+      "doc": "_meta/features/vault-check/FEATURE.md",
+      "entry": "_meta/features/vault-check/vault_check.py",
+      "triggers": ["check", "lint", "audit", "verify", "validate"],
+      "modes": ["admin", "capture", "work"],
+      "priority": 10,
+      "enabled": true
+    },
+    {
+      "name": "rename-note",
+      "path": "_meta/features/rename-note/",
+      "doc": "_meta/features/rename-note/FEATURE.md",
+      "entry": "_meta/features/rename-note/rename-note.sh",
+      "triggers": ["rename", "move note", "change slug"],
+      "modes": ["admin"],
+      "priority": 10,
+      "enabled": true
+    },
+    {
+      "name": "build-book-indexes",
+      "path": "_meta/features/build-book-indexes/",
+      "doc": "_meta/features/build-book-indexes/FEATURE.md",
+      "entry": "_meta/features/build-book-indexes/build_book_indexes.py",
+      "triggers": ["build book indexes", "rebuild indexes", "regenerate book index", "index textbooks"],
+      "modes": ["admin", "maintenance"],
+      "priority": 10,
+      "enabled": true
+    },
+    {
+      "name": "fix-frontmatter",
+      "path": "_meta/features/fix-frontmatter/",
+      "doc": "_meta/features/fix-frontmatter/FEATURE.md",
+      "entry": "_meta/features/fix-frontmatter/fix_frontmatter.py",
+      "triggers": ["fix frontmatter", "auto-correct frontmatter", "backfill frontmatter", "add missing frontmatter"],
+      "modes": ["admin", "maintenance"],
+      "priority": 10,
+      "enabled": true
+    }
+  ],
+
+  "fallback": {
+    "on_no_match": "ask_user",
+    "on_multiple_matches": "highest_priority_then_ask"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.minimap.enabled": false,
+  "editor.wrappingIndent": "indent",
+  "editor.overviewRulerBorder": false,
+  "editor.lineHeight": 24,
+  "foam.edit.linkReferenceDefinitions": "off",
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": false
+    }
+  },
+  "git.enableSmartCommit": true,
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.gitkeep": true,
+    "**/**/.gitkeep": true,
+    "_meta/": false,
+    ".claude/": false,
+    ".foam/": true,
+    "_archive/": false
+  },
+  "files.insertFinalNewline": true,
+  "markdown.styles": [".vscode/custom-tag-style.css"],
+  "gitdoc.enabled": false,
+  "gitdoc.commitValidationLevel": "none",
+  "gitdoc.timeZone": "US/Eastern",
+  "gitdoc.ai.useEmojis": true,
+  "gitdoc.ai.enabled": true,
+  "workbench.colorCustomizations": {
+    "Dark 2026": {
+      // "activityBar.background": "#dfd5ed",
+      // "activityBar.foreground": "#3e17da",
+
+      "titleBar.activeBackground": "#0c243b",
+      "titleBar.inactiveBackground": "#0c243b",
+      "titleBar.activeForeground": "#ffffff",
+      "titleBar.inactiveForeground": "#ffffff"
+      // "editor.background": "#1C1E2E",
+    }
+  },
+  "editor.fontSize": 18,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.pinnedTabSizing": "shrink",
+  "workbench.editor.pinnedTabsOnSeparateRow": false,
+  "workbench.editor.wrapTabs": true,
+  "window.density.editorTabHeight": "compact",
+  "workbench.editor.enablePreview": true,
+  "workbench.editor.tabSizing": "shrink",
+  "editor.wordWrap": "on",
+  "diffEditor.wordWrap": "on",
+  "chat.editor.wordWrap": "on",
+  "editor.wrappingStrategy": "advanced",
+  "editor.tabSize": 4,
+  "workbench.editor.tabSizingFixedMaxWidth": 100,
+  "workbench.editor.tabSizingFixedMinWidth": 50,
+  "workbench.editor.untitled.labelFormat": "name",
+  "workbench.editor.enablePreviewFromCodeNavigation": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  "workbench.colorTheme": "Tokyo Night Light"
+}
