@@ -1,1 +1,1 @@
-This file will be the executive dashboard and primary entry point into active work.
+This file will be the User dashboard and primary entry point into active work.

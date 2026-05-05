@@ -11,7 +11,7 @@
         --muted: #67716d;
         --line: #b7ada0;
         --workspace: #2f6f73;
-        --exec: #7b4f2c;
+        --agentic: #7b4f2c;
         --workflow: #4c5f86;
         --archive: #7b3e45;
         --note: #ded4c4;
@@ -171,8 +171,8 @@
       .lane.workspace .lane-header {
         background: var(--workspace);
       }
-      .lane.exec .lane-header {
-        background: var(--exec);
+      .lane.agentic .lane-header {
+        background: var(--agentic);
       }
       .lane.workflow .lane-header {
         background: var(--workflow);
@@ -345,8 +345,8 @@
           <h1>Hyperspace Scaffold Structure</h1>
           <p class="subtitle">
             Current migration scaffold: Workspace stays freeform and
-            executive-facing; Delegated holds operator-managed active content;
-            _exec holds operator protocols, logs, core rules, and archive.
+            User-facing; Delegated holds operator-managed active content;
+            _agentic holds operator protocols, logs, core rules, and archive.
           </p>
         </div>
         <div class="stamp">Current scaffold</div>
@@ -361,12 +361,12 @@
         <div class="lanes">
           <article class="lane workspace">
             <header class="lane-header">
-              <div class="code">A - executive-facing work</div>
+              <div class="code">A - User-facing work</div>
               <div>
                 <h2>Workspace</h2>
                 <p class="purpose">
-                  Your active notes and work, with folders created only when
-                  they are useful.
+                  The User's active notes and work, with folders created only
+                  when they are useful.
                 </p>
               </div>
             </header>
@@ -384,7 +384,7 @@
               <div class="node">
                 <div class="node-title">Tasks.md</div>
                 <div class="node-desc">
-                  Executive-facing task view for active work.
+                  User-facing task view for active work.
                 </div>
               </div>
               <div class="node">
@@ -433,11 +433,11 @@
             </div>
           </article>
 
-          <article class="lane exec">
+          <article class="lane agentic">
             <header class="lane-header">
-              <div class="code">B - internal execution layer</div>
+              <div class="code">B - internal agentic layer</div>
               <div>
-                <h2>_exec</h2>
+                <h2>_agentic</h2>
                 <p class="purpose">
                   Technical behind-the-scenes layer organized by functional
                   content type.
@@ -504,8 +504,8 @@
             <span class="tag">Decision 1</span>
             <div class="decision-title">Delegated is active content</div>
             <div class="decision-copy">
-              Tasks and calendar stay in Workspace because they are about your
-              life. May add more delegated content as needed.
+              Tasks and calendar stay in Workspace because they are about the
+              User's life. May add more delegated content as needed.
             </div>
           </div>
           <div class="decision">
@@ -525,8 +525,8 @@
           <span>Dashed boxes = principles being confirmed</span>
           <span>Workspace = active-facing work only</span>
           <span>Delegated files = active content managed by operators</span>
-          <span>_exec = internal operator layer</span>
-          <span>_exec files = name.TYPE.ext</span>
+          <span>_agentic = internal operator layer</span>
+          <span>_agentic files = name.TYPE.ext</span>
           <span>operator logs live beside operator protocols</span>
         </div>
       </section>
