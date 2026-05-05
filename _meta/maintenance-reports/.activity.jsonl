@@ -1,0 +1,16 @@
+{"ts": "2026-05-03T19:50:08Z", "event": "vault_check", "files": 709, "errors": 7, "warnings": 98, "m6_rollup": {"title": 49, "created": 49}, "any_m6_overdue": false}
+{"ts": "2026-05-03T20:16:20Z", "event": "vault_check", "files": 67, "errors": 138, "warnings": 98, "m6_rollup": {"title": 49, "created": 49}, "any_m6_overdue": false}
+{"ts": "2026-05-03T20:17:31Z", "event": "vault_check", "files": 67, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-03T20:43:58Z", "event": "vault_check", "files": 52, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-03T20:58:16Z", "event": "vault_check", "files": 52, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-03T21:03:54Z", "event": "vault_check", "files": 53, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-04T00:43:04Z", "event": "vault_check", "files": 52, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-04T00:44:51Z", "event": "vault_check", "files": 45, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-04T00:49:10Z", "event": "vault_check", "files": 36, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-04T00:55:04Z", "event": "vault_check", "files": 36, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-04T00:56:49Z", "event": "vault_check", "files": 38, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-04T01:06:20Z", "event": "vault_check", "files": 40, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-04T01:08:07Z", "event": "vault_check", "files": 40, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": false}
+{"ts": "2026-05-05T00:06:19Z", "event": "vault_check", "files": 43, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": true}
+{"ts": "2026-05-05T08:10:41Z", "event": "vault_check", "files": 42, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": true}
+{"ts": "2026-05-05T08:22:00Z", "event": "vault_check", "files": 43, "errors": 9, "warnings": 2, "m6_rollup": {"title": 1, "created": 1}, "any_m6_overdue": true}

@@ -1,0 +1,8 @@
+{
+  "last_run_utc": "2026-05-05T08:22:00Z",
+  "recheck_interval_hours": 24,
+  "first_seen_utc": {
+    "CLAUDE.md::M6::no frontmatter block (recommended key 'created' absent)": "2026-05-03T19:50:08Z",
+    "CLAUDE.md::M6::no frontmatter block (recommended key 'title' absent)": "2026-05-03T19:50:08Z"
+  }
+}

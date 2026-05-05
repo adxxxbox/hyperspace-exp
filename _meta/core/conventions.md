@@ -24,11 +24,13 @@ These files are **not** protected under §1. An empty `inbox.md` / `todo.md` is 
 
 ## 2. Top-level folders
 
-Canonical: `1-projects/`, `2-areas/`, `3-resources/`, `4-atlas/`, `5-cards/`, `journal/`, `_archive/`, `_meta/`, `_secretary/`, `attachments/`.
+Canonical: `1-projects/`, `2-areas/`, `3-resources/`, `4-atlas/`, `5-cards/`, `journal/`, `_archive/`, `_meta/`, `_secretary/`, `attachments/`, `migration/`.
 
 The numeric prefixes enforce display order. Do not rename them.
 
 `4-atlas/`, `5-cards/`, and `journal/` may be empty — that is not a violation.
+
+`migration/` is a temporary planning scaffold for the Hyperspace restructure; it is exempt from slug, outline, and frontmatter checks until the new structure is promoted.
 
 ## 3. Filenames
 
@@ -95,7 +97,7 @@ When you create a new note: link it from a hub in `4-atlas/`, from a sub-hub lik
 
 Hubs live in `4-atlas/`. Keep `outlines.md` short (target ≤10 child links) and route through hubs. Don't dump leaf links into `outlines.md`.
 
-The exempt set is configurable via `rules.exempt_dirs` (default `["_archive", "_secretary"]`). This same list is shared by three checks:
+The exempt set is configurable via `rules.exempt_dirs` (default `["_archive", "_secretary", "migration"]`). This same list is shared by three checks:
 
 - **L3** (slug uniqueness): files in exempt dirs do not participate in collision checks.
 - **O1** (outline reachability): files in exempt dirs are not required to be linked from `outlines.md`.

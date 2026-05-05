@@ -10,9 +10,9 @@
 // ====================================================================
 {
   "_self": {
-    "version": "2.4",
+    "version": "2.5",
     "conventions_path": "_meta/core/conventions.md",
-    "last_updated": "2026-04-23",
+    "last_updated": "2026-05-03",
     "format": "jsonc",
     "loader": "_meta/lib/config_loader.py"
   },
@@ -76,7 +76,8 @@
       "5-cards",
       "_archive",
       "_meta",
-      "_secretary"
+      "_secretary",
+      "migration"
     ],
     "empty_ok": ["journal", "4-atlas", "5-cards"],
     "no_other_top_level": true
@@ -213,9 +214,10 @@
   // `_archive/` — provenance storage; no outline/frontmatter concerns. //
   // `_secretary/` — Nancy's workspace; uses HTML-comment entry headers //
   //   instead of YAML frontmatter, and is grep-organized, not linked.  //
+  // `migration/` — temporary Hyperspace scaffold, not live vault body.  //
   // ------------------------------------------------------------------ //
   "rules": {
-    "exempt_dirs": ["_archive", "_secretary"]
+    "exempt_dirs": ["_archive", "_secretary", "migration"]
   },
 
   // ------------------------------------------------------------------ //

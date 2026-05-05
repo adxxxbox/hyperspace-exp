@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hyperspace Scaffold Structure</title>
+    <style>
+      :root {
+        --paper: #f7f3ea;
+        --ink: #202423;
+        --muted: #67716d;
+        --line: #b7ada0;
+        --workspace: #2f6f73;
+        --exec: #7b4f2c;
+        --workflow: #4c5f86;
+        --archive: #7b3e45;
+        --note: #ded4c4;
+        --panel: #fffbf3;
+        --shadow: 0 18px 45px rgba(49, 43, 36, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          linear-gradient(rgba(32, 36, 35, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(32, 36, 35, 0.035) 1px, transparent 1px),
+          var(--paper);
+        background-size: 22px 22px;
+        font-family:
+          Avenir Next,
+          Gill Sans,
+          Trebuchet MS,
+          sans-serif;
+      }
+
+      main {
+        width: min(1440px, calc(100vw - 48px));
+        margin: 0 auto;
+        padding: 40px 0 56px;
+      }
+
+      .titlebar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: end;
+        margin-bottom: 28px;
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Georgia, Cambria, serif;
+        font-size: clamp(34px, 5vw, 72px);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        max-width: 740px;
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.5;
+      }
+
+      .stamp {
+        border: 2px solid var(--ink);
+        padding: 12px 14px;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        background: var(--panel);
+        box-shadow: 6px 6px 0 rgba(32, 36, 35, 0.12);
+        white-space: nowrap;
+      }
+
+      .canvas {
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--ink);
+        background: rgba(255, 251, 243, 0.88);
+        box-shadow: var(--shadow);
+        padding: 30px;
+      }
+
+      .root-card {
+        width: min(520px, 100%);
+        margin: 0 auto 30px;
+        border: 2px solid var(--ink);
+        background: #fffaf0;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .root-card::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -32px;
+        width: 2px;
+        height: 30px;
+        background: var(--ink);
+      }
+
+      .root-card .label {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        margin-bottom: 8px;
+      }
+
+      .root-card .name {
+        font-family: Georgia, Cambria, serif;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .lanes {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.95fr) minmax(360px, 1.55fr);
+        gap: 18px;
+        position: relative;
+        padding-top: 30px;
+      }
+
+      .lanes::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 24%;
+        right: 24%;
+        height: 2px;
+        background: var(--ink);
+      }
+
+      .lane {
+        border: 2px solid var(--ink);
+        background: var(--panel);
+        min-height: 560px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .lane::before {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 30px;
+        background: var(--ink);
+        margin: -32px auto 0;
+      }
+
+      .lane-header {
+        padding: 18px;
+        color: #fff;
+        min-height: 118px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .lane.workspace .lane-header {
+        background: var(--workspace);
+      }
+      .lane.exec .lane-header {
+        background: var(--exec);
+      }
+      .lane.workflow .lane-header {
+        background: var(--workflow);
+      }
+      .lane.archive .lane-header {
+        background: var(--archive);
+      }
+
+      .code {
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        opacity: 0.82;
+      }
+
+      h2 {
+        margin: 0;
+        font-family: Georgia, Cambria, serif;
+        font-size: 30px;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .purpose {
+        margin: 8px 0 0;
+        font-size: 13px;
+        line-height: 1.35;
+        opacity: 0.9;
+      }
+
+      .lane-body {
+        padding: 16px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .node {
+        border: 1.5px solid var(--line);
+        background: #fffdf8;
+        padding: 12px;
+        min-height: 72px;
+        position: relative;
+      }
+
+      .node.strong {
+        border-color: var(--ink);
+        box-shadow: 5px 5px 0 rgba(32, 36, 35, 0.08);
+      }
+
+      .node-title {
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 1.2;
+        margin-bottom: 6px;
+      }
+
+      .node-desc {
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.35;
+      }
+
+      .children {
+        display: grid;
+        gap: 7px;
+        margin-top: 10px;
+        padding-left: 10px;
+        border-left: 2px solid var(--note);
+      }
+
+      .child {
+        font-size: 12px;
+        line-height: 1.25;
+        padding: 6px 8px;
+        background: #f2eadc;
+        border: 1px solid #d8ccb9;
+      }
+
+      .decision-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .decision {
+        border: 2px dashed var(--ink);
+        background: rgba(255, 251, 243, 0.72);
+        padding: 14px;
+        min-height: 116px;
+      }
+
+      .decision .tag {
+        display: inline-block;
+        border: 1px solid var(--ink);
+        padding: 3px 7px;
+        margin-bottom: 10px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        background: #fffdf8;
+      }
+
+      .decision-title {
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+
+      .decision-copy {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .legend span {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 7px 9px;
+      }
+
+      @media (max-width: 1120px) {
+        .lanes {
+          grid-template-columns: repeat(2, minmax(240px, 1fr));
+        }
+
+        .lanes::before,
+        .lane::before,
+        .root-card::after {
+          display: none;
+        }
+
+        .decision-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        main {
+          width: min(100vw - 24px, 1440px);
+          padding-top: 18px;
+        }
+
+        .titlebar {
+          grid-template-columns: 1fr;
+        }
+
+        .canvas {
+          padding: 14px;
+        }
+
+        .lanes {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="titlebar">
+        <div>
+          <h1>Hyperspace Scaffold Structure</h1>
+          <p class="subtitle">
+            Current migration scaffold: Workspace stays freeform and
+            executive-facing; Delegated holds operator-managed active content;
+            _exec holds operator protocols, logs, core rules, and archive.
+          </p>
+        </div>
+        <div class="stamp">Current scaffold</div>
+      </section>
+
+      <section class="canvas" aria-label="Current migration structure diagram">
+        <div class="root-card">
+          <div class="label">Future vault identity</div>
+          <div class="name">Hyperspace</div>
+        </div>
+
+        <div class="lanes">
+          <article class="lane workspace">
+            <header class="lane-header">
+              <div class="code">A - executive-facing work</div>
+              <div>
+                <h2>Workspace</h2>
+                <p class="purpose">
+                  Your active notes and work, with folders created only when
+                  they are useful.
+                </p>
+              </div>
+            </header>
+            <div class="lane-body">
+              <div class="node strong">
+                <div class="node-title">Home.md</div>
+                <div class="node-desc">
+                  Entry point for the working side of Hyperspace.
+                </div>
+              </div>
+              <div class="node">
+                <div class="node-title">Inbox.md</div>
+                <div class="node-desc">Fast capture before routing.</div>
+              </div>
+              <div class="node">
+                <div class="node-title">Tasks.md</div>
+                <div class="node-desc">
+                  Executive-facing task view for active work.
+                </div>
+              </div>
+              <div class="node">
+                <div class="node-title">Outlines.md</div>
+                <div class="node-desc">
+                  Workspace map of content using links, tags, and context.
+                </div>
+              </div>
+              <div class="node strong">
+                <div class="node-title">Delegated/</div>
+                <div class="node-desc">
+                  Active content that remains part of Workspace but is managed
+                  by operators.
+                </div>
+                <div class="children">
+                  <div class="child">
+                    Tasks.DELEGATED.md - managed task list
+                  </div>
+                  <div class="child">
+                    Calendar.DELEGATED.md - managed calendar view
+                  </div>
+                </div>
+              </div>
+              <div class="node">
+                <div class="node-title">Freeform Structure</div>
+                <div class="node-desc">
+                  No required Projects, Areas, Resources, Atlas, Cards, or
+                  Journal backbone.
+                </div>
+                <div class="children">
+                  <div class="child">Create folders when useful</div>
+                  <div class="child">
+                    Use links, tags, and context for organization
+                  </div>
+                  <div class="child">
+                    No folder taxonomy is imposed by the backbone
+                  </div>
+                </div>
+              </div>
+              <div class="node">
+                <div class="node-title">Workspace Overview.md</div>
+                <div class="node-desc">
+                  One-sentence placeholder for this section.
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="lane exec">
+            <header class="lane-header">
+              <div class="code">B - internal execution layer</div>
+              <div>
+                <h2>_exec</h2>
+                <p class="purpose">
+                  Technical behind-the-scenes layer organized by functional
+                  content type.
+                </p>
+              </div>
+            </header>
+            <div class="lane-body">
+              <div class="node strong">
+                <div class="node-title">core-rules/</div>
+                <div class="node-desc">
+                  Core rules plus tool definitions, grouped as the technical
+                  control surface.
+                </div>
+                <div class="children">
+                  <div class="child">overview.CORE.md</div>
+                  <div class="child">router.CORE.md</div>
+                  <div class="child">org-chart.CORE.md</div>
+                  <div class="child">conventions.CORE.md</div>
+                  <div class="child">permissions.CORE.md</div>
+                  <div class="child">context-loading.CORE.md</div>
+                  <div class="child">registry.TOOL.jsonc</div>
+                  <div class="child">overview.TOOL.md</div>
+                </div>
+              </div>
+              <div class="node strong">
+                <div class="node-title">operators/</div>
+                <div class="node-desc">
+                  One folder per operator, keeping its protocol and workflow
+                  history together.
+                </div>
+                <div class="children">
+                  <div class="child">overview.OPERATOR.md</div>
+                  <div class="child">task-manager/task-manager.OPERATOR.md</div>
+                  <div class="child">task-manager/task-manager.LOG.md</div>
+                  <div class="child">
+                    calendar-manager/calendar-manager.OPERATOR.md
+                  </div>
+                  <div class="child">
+                    calendar-manager/calendar-manager.LOG.md
+                  </div>
+                  <div class="child">note-lookup/note-lookup.OPERATOR.md</div>
+                  <div class="child">note-lookup/note-lookup.LOG.md</div>
+                </div>
+              </div>
+              <div class="node strong">
+                <div class="node-title">archive/</div>
+                <div class="node-desc">
+                  One archive for all inactive, retired, superseded, or
+                  preserved material.
+                </div>
+                <div class="children">
+                  <div class="child">overview.ARCHIVE.md</div>
+                  <div class="child">
+                    origin folders can be added when needed
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <section class="decision-grid" aria-label="Pending naming decisions">
+          <div class="decision">
+            <span class="tag">Decision 1</span>
+            <div class="decision-title">Delegated is active content</div>
+            <div class="decision-copy">
+              Tasks and calendar stay in Workspace because they are about your
+              life. May add more delegated content as needed.
+            </div>
+          </div>
+          <div class="decision">
+            <span class="tag">Decision 2</span>
+            <div class="decision-title">Operator logs live with operators</div>
+            <div class="decision-copy">
+              Each operator folder contains its
+              <code>.OPERATOR.md</code> protocol and matching
+              <code>.LOG.md</code> history file, not the managed task/calendar
+              content itself.
+            </div>
+          </div>
+        </section>
+
+        <div class="legend">
+          <span>Solid boxes = current migration scaffold</span>
+          <span>Dashed boxes = principles being confirmed</span>
+          <span>Workspace = active-facing work only</span>
+          <span>Delegated files = active content managed by operators</span>
+          <span>_exec = internal operator layer</span>
+          <span>_exec files = name.TYPE.ext</span>
+          <span>operator logs live beside operator protocols</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
