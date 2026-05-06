@@ -244,6 +244,8 @@ _agentic/archive/
 
 The archive is the single place for inactive, retired, superseded, or preserved material from anywhere in Hyperspace.
 
+It may contain retired User material, but only because that material is inactive or preserved. Active User material belongs in Workspace or Workspace/Delegated, not archive.
+
 The archive is inside `_agentic` because it is part of the system's storage and maintenance layer, not part of active Workspace.
 
 Archive organization should be added when real archived material exists. The backbone does not prescribe archive subfolders yet.
