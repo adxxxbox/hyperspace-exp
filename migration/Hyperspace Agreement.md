@@ -1,8 +1,8 @@
-# Hyperspace Agreement
+# Hyperspace
 
-This document explains the current working agreement for the Hyperspace restructure. It should be understandable without reading the existing vault, the old secretary files, or the current migration scaffold.
+This document explains the current perspective of the Hyperspace project. It should be understandable without reading the existing vault, the old secretary files, or the current migration scaffold.
 
-This is not yet the final rulebook. It is a design agreement: what Hyperspace is trying to become, how its main parts relate to each other, and what boundaries should stay clear as the structure evolves.
+This is not yet the final rulebook. It is a continuously evolving design document: what Hyperspace is trying to become, how its main parts relate to each other, and what boundaries should stay clear as the structure evolves.
 
 ## What Hyperspace is
 
@@ -306,19 +306,19 @@ Current type extensions:
 
 Use this table when deciding where something belongs.
 
-| Item                             | Location                                                | Reason                                                |
-| -------------------------------- | ------------------------------------------------------- | ----------------------------------------------------- |
-| A normal project note            | `Workspace/` or a convenient Workspace subfolder        | It is User-facing active work                    |
-| A fast captured thought          | `Workspace/Inbox.md`                                    | It has not been routed yet                            |
-| The main map of notes            | `Workspace/Outlines.md`                                 | It is User-facing navigation                     |
-| A personal task view             | `Workspace/Tasks.md`                                    | It is a readable task surface                         |
-| Operator-managed task data       | `Workspace/Delegated/Tasks.DELEGATED.md`                | It is active User content managed by an operator |
-| Operator-managed calendar data   | `Workspace/Delegated/Calendar.DELEGATED.md`             | It is active User content managed by an operator |
-| Instructions for task management | `_agentic/operators/task-manager/task-manager.OPERATOR.md` | It defines operator behavior                          |
-| Task manager history             | `_agentic/operators/task-manager/task-manager.LOG.md`      | It records what the operator did                      |
-| Shared routing rules             | `_agentic/core-rules/router.CORE.md`                       | It affects multiple operators                         |
-| Tool registry                    | `_agentic/core-rules/registry.TOOL.jsonc`                  | It is technical operator infrastructure               |
-| Retired material                 | `_agentic/archive/`                                        | It is inactive or preserved                           |
+| Item                             | Location                                                   | Reason                                           |
+| -------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ |
+| A normal project note            | `Workspace/` or a convenient Workspace subfolder           | It is User-facing active work                    |
+| A fast captured thought          | `Workspace/Inbox.md`                                       | It has not been routed yet                       |
+| The main map of notes            | `Workspace/Outlines.md`                                    | It is User-facing navigation                     |
+| A personal task view             | `Workspace/Tasks.md`                                       | It is a readable task surface                    |
+| Operator-managed task data       | `Workspace/Delegated/Tasks.DELEGATED.md`                   | It is active User content managed by an operator |
+| Operator-managed calendar data   | `Workspace/Delegated/Calendar.DELEGATED.md`                | It is active User content managed by an operator |
+| Instructions for task management | `_agentic/operators/task-manager/task-manager.OPERATOR.md` | It defines operator behavior                     |
+| Task manager history             | `_agentic/operators/task-manager/task-manager.LOG.md`      | It records what the operator did                 |
+| Shared routing rules             | `_agentic/core-rules/router.CORE.md`                       | It affects multiple operators                    |
+| Tool registry                    | `_agentic/core-rules/registry.TOOL.jsonc`                  | It is technical operator infrastructure          |
+| Retired material                 | `_agentic/archive/`                                        | It is inactive or preserved                      |
 
 ## Boundaries
 
