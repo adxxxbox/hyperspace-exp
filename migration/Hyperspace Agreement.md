@@ -66,7 +66,7 @@ Workspace/
   Home.md
   Inbox.md
   Tasks.md
-  Outlines.md
+  Map.md
   Workspace Overview.md
   Delegated/
     Tasks.DELEGATED.md
@@ -79,7 +79,7 @@ Workspace/
 
 `Tasks.md` is the User-facing task view. It may summarize, link to, or surface task information, but it does not have to be the full task database.
 
-`Outlines.md` is the User-facing map of content. It helps navigate Workspace through links and context.
+`Map.md` is the User-facing map of content. It helps navigate Workspace through links and context.
 
 `Workspace Overview.md` briefly explains the purpose of Workspace.
 
@@ -258,7 +258,7 @@ Examples:
 Home.md
 Inbox.md
 Tasks.md
-Outlines.md
+Map.md
 Workspace Overview.md
 ```
 
@@ -310,7 +310,7 @@ Use this table when deciding where something belongs.
 | -------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ |
 | A normal project note            | `Workspace/` or a convenient Workspace subfolder           | It is User-facing active work                    |
 | A fast captured thought          | `Workspace/Inbox.md`                                       | It has not been routed yet                       |
-| The main map of notes            | `Workspace/Outlines.md`                                    | It is User-facing navigation                     |
+| The main map of notes            | `Workspace/Map.md`                                         | It is User-facing navigation                     |
 | A personal task view             | `Workspace/Tasks.md`                                       | It is a readable task surface                    |
 | Operator-managed task data       | `Workspace/Delegated/Tasks.DELEGATED.md`                   | It is active User content managed by an operator |
 | Operator-managed calendar data   | `Workspace/Delegated/Calendar.DELEGATED.md`                | It is active User content managed by an operator |

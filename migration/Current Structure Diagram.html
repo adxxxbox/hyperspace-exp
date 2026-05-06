@@ -388,7 +388,7 @@
                 </div>
               </div>
               <div class="node">
-                <div class="node-title">Outlines.md</div>
+                <div class="node-title">Map.md</div>
                 <div class="node-desc">
                   Workspace map of content using links, tags, and context.
                 </div>
@@ -460,6 +460,9 @@
                   <div class="child">context-loading.CORE.md</div>
                   <div class="child">registry.TOOL.jsonc</div>
                   <div class="child">overview.TOOL.md</div>
+                  <div class="child">
+                    minimal context loading: read only what the task requires
+                  </div>
                 </div>
               </div>
               <div class="node strong">
@@ -486,10 +489,14 @@
                 <div class="node-title">archive/</div>
                 <div class="node-desc">
                   One archive for all inactive, retired, superseded, or
-                  preserved material.
+                  preserved material, including retired User material only
+                  after it is inactive.
                 </div>
                 <div class="children">
                   <div class="child">overview.ARCHIVE.md</div>
+                  <div class="child">
+                    active User work stays in Workspace, not archive
+                  </div>
                   <div class="child">
                     origin folders can be added when needed
                   </div>
@@ -518,6 +525,24 @@
               content itself.
             </div>
           </div>
+          <div class="decision">
+            <span class="tag">Principle 1</span>
+            <div class="decision-title">Minimal context loading</div>
+            <div class="decision-copy">
+              Operators should load the smallest useful context: shared rules,
+              their own protocol, and only the Workspace material needed for
+              the current task.
+            </div>
+          </div>
+          <div class="decision">
+            <span class="tag">Principle 2</span>
+            <div class="decision-title">Archive means inactive</div>
+            <div class="decision-copy">
+              <code>_agentic/archive/</code> may preserve retired User
+              material, but its presence there means it is no longer active
+              Workspace material.
+            </div>
+          </div>
         </section>
 
         <div class="legend">
@@ -527,7 +552,9 @@
           <span>Delegated files = active content managed by operators</span>
           <span>_agentic = internal operator layer</span>
           <span>_agentic files = name.TYPE.ext</span>
+          <span>operators read minimal task context</span>
           <span>operator logs live beside operator protocols</span>
+          <span>archive can preserve inactive User material</span>
         </div>
       </section>
     </main>
