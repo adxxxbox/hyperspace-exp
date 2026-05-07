@@ -124,6 +124,15 @@
         line-height: 1;
       }
 
+      .root-route {
+        margin-top: 12px;
+        border-top: 1px solid var(--line);
+        padding-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
       .lanes {
         display: grid;
         grid-template-columns: minmax(280px, 0.95fr) minmax(360px, 1.55fr);
@@ -345,7 +354,7 @@
           <h1>Hyperspace Scaffold Structure</h1>
           <p class="subtitle">
             Current migration scaffold: Workspace stays freeform and
-            User-facing; Delegated holds operator-managed active content;
+            User-facing; Managed holds operator-maintained active content;
             _agentic holds operator protocols, logs, core rules, and archive.
           </p>
         </div>
@@ -356,6 +365,9 @@
         <div class="root-card">
           <div class="label">Future vault identity</div>
           <div class="name">Hyperspace</div>
+          <div class="root-route">
+            AGENTS.md - root routing table for all agents
+          </div>
         </div>
 
         <div class="lanes">
@@ -384,7 +396,14 @@
               <div class="node">
                 <div class="node-title">Tasks.md</div>
                 <div class="node-desc">
-                  User-facing task view for active work.
+                  User-facing, User-managed task view for active work.
+                </div>
+              </div>
+              <div class="node">
+                <div class="node-title">Calendar.md</div>
+                <div class="node-desc">
+                  User-facing, User-managed calendar view for active schedule
+                  context.
                 </div>
               </div>
               <div class="node">
@@ -394,17 +413,17 @@
                 </div>
               </div>
               <div class="node strong">
-                <div class="node-title">Delegated/</div>
+                <div class="node-title">Managed/</div>
                 <div class="node-desc">
-                  Active content that remains part of Workspace but is managed
-                  by operators.
+                  User-owned active content that remains part of Workspace but
+                  is maintained by operators.
                 </div>
                 <div class="children">
                   <div class="child">
-                    Tasks.DELEGATED.md - managed task list
+                    Tasks.MANAGED.md - operator-maintained task data
                   </div>
                   <div class="child">
-                    Calendar.DELEGATED.md - managed calendar view
+                    Calendar.MANAGED.md - operator-maintained calendar data
                   </div>
                 </div>
               </div>
@@ -481,8 +500,10 @@
                   <div class="child">
                     calendar-manager/calendar-manager.LOG.md
                   </div>
-                  <div class="child">note-lookup/note-lookup.OPERATOR.md</div>
-                  <div class="child">note-lookup/note-lookup.LOG.md</div>
+                  <div class="child">
+                    signal-router/signal-router.OPERATOR.md
+                  </div>
+                  <div class="child">signal-router/signal-router.LOG.md</div>
                 </div>
               </div>
               <div class="node strong">
@@ -509,10 +530,11 @@
         <section class="decision-grid" aria-label="Confirmed decisions and principles">
           <div class="decision">
             <span class="tag">Decision 1</span>
-            <div class="decision-title">Delegated is active content</div>
+            <div class="decision-title">Managed is active content</div>
             <div class="decision-copy">
               Tasks and calendar stay in Workspace because they are about the
-              User's life. May add more delegated content as needed.
+              User's life. Operators may maintain them, but the User still
+              owns the content.
             </div>
           </div>
           <div class="decision">
@@ -523,6 +545,23 @@
               <code>.OPERATOR.md</code> protocol and matching
               <code>.LOG.md</code> history file, not the managed task/calendar
               content itself.
+            </div>
+          </div>
+          <div class="decision">
+            <span class="tag">Decision 3</span>
+            <div class="decision-title">User surfaces stay separate</div>
+            <div class="decision-copy">
+              <code>Tasks.md</code> and <code>Calendar.md</code> are
+              User-facing and User-managed; <code>Tasks.MANAGED.md</code> and
+              <code>Calendar.MANAGED.md</code> are operator-maintained.
+            </div>
+          </div>
+          <div class="decision">
+            <span class="tag">Decision 4</span>
+            <div class="decision-title">Signal router routes signals</div>
+            <div class="decision-copy">
+              The operator scans Workspace, detects actionable signals, and
+              routes them into managed tasks or managed calendar items.
             </div>
           </div>
           <div class="decision">
@@ -548,8 +587,9 @@
         <div class="legend">
           <span>Solid boxes = current migration scaffold</span>
           <span>Dashed boxes = principles being confirmed</span>
+          <span>AGENTS.md = root routing table</span>
           <span>Workspace = active User-facing work</span>
-          <span>Delegated files = active content managed by operators</span>
+          <span>Managed files = User-owned content maintained by operators</span>
           <span>_agentic = internal operator layer</span>
           <span>_agentic files = name.TYPE.ext</span>
           <span>operators read minimal task context</span>

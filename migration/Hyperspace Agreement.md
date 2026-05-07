@@ -29,18 +29,27 @@ Hyperspace should make it easy to:
 
 ## Main zones
 
-The future structure currently has two main zones:
+The future structure currently has two main zones plus one root routing file:
 
 ```text
 Workspace/
 _agentic/
+AGENTS.md
 ```
 
 `Workspace/` is the User-facing work area.
 
 `_agentic/` is the internal agentic layer.
 
+`AGENTS.md` is the root routing table for all agents.
+
 The distinction is the most important boundary in Hyperspace.
+
+## Root routing
+
+`AGENTS.md` sits at the root of Hyperspace.
+
+It is not an operator and it is not a workspace note. It is the first routing table agents should read so they can identify the correct operator, the correct core rules, and the smallest useful context for the current request.
 
 ## Workspace
 
@@ -66,47 +75,50 @@ Workspace/
   Home.md
   Inbox.md
   Tasks.md
+  Calendar.md
   Map.md
   Workspace Overview.md
-  Delegated/
-    Tasks.DELEGATED.md
-    Calendar.DELEGATED.md
+  Managed/
+    Tasks.MANAGED.md
+    Calendar.MANAGED.md
 ```
 
 `Home.md` is the main entry point into active work.
 
 `Inbox.md` is for fast capture before routing.
 
-`Tasks.md` is the User-facing task view. It may summarize, link to, or surface task information, but it does not have to be the full task database.
+`Tasks.md` is the User-facing, User-managed task view. It may summarize, link to, or surface task information, but it does not have to be the full task database.
+
+`Calendar.md` is the User-facing, User-managed calendar view.
 
 `Map.md` is the User-facing map of content. It helps navigate Workspace through links and context.
 
 `Workspace Overview.md` briefly explains the purpose of Workspace.
 
-`Delegated/` contains active content that is still about the User's life and work, but is actively maintained by operators.
+`Managed/` contains active content that is still owned by the User, but is actively maintained by operators.
 
-## Delegated
+## Managed
 
-`Workspace/Delegated/` exists because some active content belongs in Workspace but is not purely freeform writing.
+`Workspace/Managed/` exists because some active content belongs in Workspace but is maintained by operators.
 
 Tasks and calendar items are examples. They are User-facing and about real life/work, but an operator may maintain them.
 
-Current delegated files:
+Current managed files:
 
 ```text
 Workspace/
-  Delegated/
-    Tasks.DELEGATED.md
-    Calendar.DELEGATED.md
+  Managed/
+    Tasks.MANAGED.md
+    Calendar.MANAGED.md
 ```
 
-`Tasks.DELEGATED.md` is the operator-managed task source or working task file.
+`Tasks.MANAGED.md` is the operator-maintained task source or working task file.
 
-`Calendar.DELEGATED.md` is the operator-managed calendar source or working calendar file.
+`Calendar.MANAGED.md` is the operator-maintained calendar source or working calendar file.
 
-There is intentionally no `Lookups.DELEGATED.md`.
+There is intentionally no separate managed signal file.
 
-Lookup work is behavior, not a separate User-facing content category. The lookup operator scans Workspace for signals and routes findings into delegated tasks or delegated calendar items. Its process history belongs in its own operator log.
+Signal routing is behavior, not a separate User-facing content category. The signal router scans Workspace for signals and routes findings into managed tasks or managed calendar items. Its process history belongs in its own operator log.
 
 ## \_agentic
 
@@ -136,9 +148,9 @@ _agentic/
     calendar-manager/
       calendar-manager.OPERATOR.md
       calendar-manager.LOG.md
-    note-lookup/
-      note-lookup.OPERATOR.md
-      note-lookup.LOG.md
+    signal-router/
+      signal-router.OPERATOR.md
+      signal-router.LOG.md
 
   archive/
     overview.ARCHIVE.md
@@ -213,7 +225,7 @@ _agentic/operators/task-manager/task-manager.LOG.md
 But the active task content belongs in:
 
 ```text
-Workspace/Delegated/Tasks.DELEGATED.md
+Workspace/Managed/Tasks.MANAGED.md
 ```
 
 ## Current operators
@@ -223,16 +235,16 @@ Current operator placeholders:
 ```text
 task-manager
 calendar-manager
-note-lookup
+signal-router
 ```
 
-`task-manager` manages delegated tasks.
+`task-manager` maintains managed tasks.
 
-`calendar-manager` manages delegated calendar items.
+`calendar-manager` maintains managed calendar items.
 
-`note-lookup` scans Workspace for signals that may become tasks or calendar items.
+`signal-router` scans Workspace for signals that may become tasks or calendar items.
 
-The name `note-lookup` may still be revisited. Its current meaning is: read notes or other allowed sources, identify actionable signals, and route those signals into tasks or calendar items.
+The name `signal-router` reflects its current job: read allowed notes or sources, identify actionable signals, and route those signals into tasks or calendar items.
 
 ## Archive
 
@@ -244,7 +256,7 @@ _agentic/archive/
 
 The archive is the single place for inactive, retired, superseded, or preserved material from anywhere in Hyperspace.
 
-It may contain retired User material, but only because that material is inactive or preserved. Active User material belongs in Workspace or Workspace/Delegated, not archive.
+It may contain retired User material, but only because that material is inactive or preserved. Active User material belongs in Workspace or Workspace/Managed, not archive.
 
 The archive is inside `_agentic` because it is part of the system's storage and maintenance layer, not part of active Workspace.
 
@@ -260,15 +272,16 @@ Examples:
 Home.md
 Inbox.md
 Tasks.md
+Calendar.md
 Map.md
 Workspace Overview.md
 ```
 
-Delegated files use a type extension because they have a special ownership boundary:
+Managed files use a type extension because they have a special ownership boundary:
 
 ```text
-Tasks.DELEGATED.md
-Calendar.DELEGATED.md
+Tasks.MANAGED.md
+Calendar.MANAGED.md
 ```
 
 Files in `_agentic/` use:
@@ -302,7 +315,7 @@ Current type extensions:
 | `OPERATOR`  | Instructions for one operator                                       |
 | `LOG`       | Workflow history for one operator                                   |
 | `ARCHIVE`   | Archive overview or archive-related notes                           |
-| `DELEGATED` | Workspace content actively managed by operators                     |
+| `MANAGED`   | User-owned Workspace content actively maintained by operators        |
 
 ## Where things go
 
@@ -313,9 +326,10 @@ Use this table when deciding where something belongs.
 | A normal project note            | `Workspace/` or a convenient Workspace subfolder           | It is User-facing active work                    |
 | A fast captured thought          | `Workspace/Inbox.md`                                       | It has not been routed yet                       |
 | The main map of notes            | `Workspace/Map.md`                                         | It is User-facing navigation                     |
-| A personal task view             | `Workspace/Tasks.md`                                       | It is a readable task surface                    |
-| Operator-managed task data       | `Workspace/Delegated/Tasks.DELEGATED.md`                   | It is active User content managed by an operator |
-| Operator-managed calendar data   | `Workspace/Delegated/Calendar.DELEGATED.md`                | It is active User content managed by an operator |
+| A personal task view             | `Workspace/Tasks.md`                                       | It is the User-facing, User-managed task surface |
+| A personal calendar view         | `Workspace/Calendar.md`                                    | It is the User-facing, User-managed calendar surface |
+| Operator-maintained task data    | `Workspace/Managed/Tasks.MANAGED.md`                       | It is active User content maintained by an operator |
+| Operator-maintained calendar data | `Workspace/Managed/Calendar.MANAGED.md`                   | It is active User content maintained by an operator |
 | Instructions for task management | `_agentic/operators/task-manager/task-manager.OPERATOR.md` | It defines operator behavior                     |
 | Task manager history             | `_agentic/operators/task-manager/task-manager.LOG.md`      | It records what the operator did                 |
 | Shared routing rules             | `_agentic/core-rules/router.CORE.md`                       | It affects multiple operators                    |
@@ -334,11 +348,20 @@ _agentic = internal operator/system material
 The second boundary is:
 
 ```text
-Workspace/Delegated = active User-facing material managed by operators
+Workspace/Managed = active User-owned material maintained by operators
 _agentic/operators = operator behavior and history
 ```
 
-Tasks and calendars belong in `Workspace/Delegated/` because they are about the User's real commitments.
+Tasks and calendars belong in `Workspace/Managed/` when operators maintain their working data, because they are still about the User's real commitments.
+
+When a managed file has a User-facing counterpart, keep the boundary explicit:
+
+```text
+Workspace/Tasks.md = User-facing and User-managed
+Workspace/Managed/Tasks.MANAGED.md = operator-maintained
+Workspace/Calendar.md = User-facing and User-managed
+Workspace/Managed/Calendar.MANAGED.md = operator-maintained
+```
 
 Operator instructions and operator logs belong in `_agentic/operators/` because they describe how the operator behaves and what it has done.
 
@@ -370,13 +393,13 @@ Inside it, add:
 <new-operator>.LOG.md
 ```
 
-If the operator manages active User-facing content, create the relevant delegated file under:
+If the operator maintains active User-facing content, create the relevant managed file under:
 
 ```text
-Workspace/Delegated/
+Workspace/Managed/
 ```
 
-Only create a delegated file when there is real active content to manage.
+Only create a managed file when there is real active content to maintain.
 
 ## Design principles
 
@@ -390,7 +413,7 @@ Do not create a folder just because a category exists in theory.
 
 Put active User-facing content in Workspace.
 
-Put operator-managed active content in `Workspace/Delegated/`.
+Put operator-maintained active content in `Workspace/Managed/`.
 
 Put operator behavior and history in `_agentic/operators/`.
 
@@ -404,9 +427,7 @@ Keep communication simple enough that a future reader can answer: "Who owns this
 
 ## Open questions
 
-The name `note-lookup` may change if a clearer operator name emerges.
-
-The exact format inside delegated task and calendar files is not decided yet.
+The exact format inside managed task and calendar files is not decided yet.
 
 The exact archive organization is not decided yet.
 
