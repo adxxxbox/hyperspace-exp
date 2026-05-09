@@ -72,28 +72,29 @@ Current Workspace backbone:
 
 ```text
 Workspace/
-  Home.md
-  Inbox.md
-  Tasks.md
-  Calendar.md
-  Map.md
-  Workspace Overview.md
+  home.md
+  inbox.md
+  tasks-capture.md
+  map.md
+  workspace-overview.md
   Managed/
     Tasks.MANAGED.md
     Calendar.MANAGED.md
 ```
 
-`Home.md` is the main entry point into active work.
+Workspace top-level filenames use kebab-case for consistency with `_agentic` and to keep filenames script-friendly. The `Managed/` folder retains its capitalization to mark the ownership boundary visually.
 
-`Inbox.md` is for fast capture before routing.
+`home.md` is the main entry point into active work.
 
-`Tasks.md` is the User-facing, User-managed task view. It may summarize, link to, or surface task information, but it does not have to be the full task database.
+`inbox.md` is for fast capture of notes and free-form thoughts before routing. It is not for tasks.
 
-`Calendar.md` is the User-facing, User-managed calendar view.
+`tasks-capture.md` is the User-facing capture queue for tasks. The User writes tasks here in any quick form. The task-manager operator drains entries into `Managed/Tasks.MANAGED.md` and clears them from this file. The User reads the active task list in `Managed/Tasks.MANAGED.md`, which means managed files must be human-readable, not opaque internal artifacts.
 
-`Map.md` is the User-facing map of content. It helps navigate Workspace through links and context.
+There is no `calendar-capture.md`. Calendar items normally arrive via import (Epic, email invites, etc.) into `Managed/Calendar.MANAGED.md`. Rare freeform calendar mentions can be written into `inbox.md` and routed by the signal-router.
 
-`Workspace Overview.md` briefly explains the purpose of Workspace.
+`map.md` is the User-facing map of content. It helps navigate Workspace through links and context.
+
+`workspace-overview.md` briefly explains the purpose of Workspace.
 
 `Managed/` contains active content that is still owned by the User, but is actively maintained by operators.
 
@@ -264,17 +265,16 @@ Archive organization should be added when real archived material exists. The bac
 
 ## File naming
 
-Workspace can use normal human-readable filenames.
+Workspace top-level files use kebab-case so naming is consistent with `_agentic`, friendly to scripts and search, and free of spaces.
 
 Examples:
 
 ```text
-Home.md
-Inbox.md
-Tasks.md
-Calendar.md
-Map.md
-Workspace Overview.md
+home.md
+inbox.md
+tasks-capture.md
+map.md
+workspace-overview.md
 ```
 
 Managed files use a type extension because they have a special ownership boundary:
@@ -324,11 +324,10 @@ Use this table when deciding where something belongs.
 | Item                             | Location                                                   | Reason                                           |
 | -------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ |
 | A normal project note            | `Workspace/` or a convenient Workspace subfolder           | It is User-facing active work                    |
-| A fast captured thought          | `Workspace/Inbox.md`                                       | It has not been routed yet                       |
-| The main map of notes            | `Workspace/Map.md`                                         | It is User-facing navigation                     |
-| A personal task view             | `Workspace/Tasks.md`                                       | It is the User-facing, User-managed task surface |
-| A personal calendar view         | `Workspace/Calendar.md`                                    | It is the User-facing, User-managed calendar surface |
-| Operator-maintained task data    | `Workspace/Managed/Tasks.MANAGED.md`                       | It is active User content maintained by an operator |
+| A fast captured note or thought  | `Workspace/inbox.md`                                       | It is freeform, not yet routed, and not a task   |
+| A quick task to be organized later | `Workspace/tasks-capture.md`                             | It is a write-only capture queue drained by the task-manager |
+| The main map of notes            | `Workspace/map.md`                                         | It is User-facing navigation                     |
+| The active task list (read view) | `Workspace/Managed/Tasks.MANAGED.md`                       | It is the operator-maintained source of truth, kept human-readable |
 | Operator-maintained calendar data | `Workspace/Managed/Calendar.MANAGED.md`                   | It is active User content maintained by an operator |
 | Instructions for task management | `_agentic/operators/task-manager/task-manager.OPERATOR.md` | It defines operator behavior                     |
 | Task manager history             | `_agentic/operators/task-manager/task-manager.LOG.md`      | It records what the operator did                 |
@@ -354,14 +353,15 @@ _agentic/operators = operator behavior and history
 
 Tasks and calendars belong in `Workspace/Managed/` when operators maintain their working data, because they are still about the User's real commitments.
 
-When a managed file has a User-facing counterpart, keep the boundary explicit:
+When a managed file has a User-facing capture counterpart, keep the boundary explicit:
 
 ```text
-Workspace/Tasks.md = User-facing and User-managed
-Workspace/Managed/Tasks.MANAGED.md = operator-maintained
-Workspace/Calendar.md = User-facing and User-managed
-Workspace/Managed/Calendar.MANAGED.md = operator-maintained
+Workspace/tasks-capture.md       = User-facing capture queue (write-only, drained by operator)
+Workspace/Managed/Tasks.MANAGED.md = operator-maintained source of truth (User-readable)
+Workspace/Managed/Calendar.MANAGED.md = operator-maintained source of truth (User-readable)
 ```
+
+There is no User-facing `calendar.md` or `calendar-capture.md`. Calendar items enter `Calendar.MANAGED.md` through imports or via `inbox.md` plus the signal-router.
 
 Operator instructions and operator logs belong in `_agentic/operators/` because they describe how the operator behaves and what it has done.
 
@@ -427,7 +427,9 @@ Keep communication simple enough that a future reader can answer: "Who owns this
 
 ## Open questions
 
-The exact format inside managed task and calendar files is not decided yet.
+The exact format inside managed task and calendar files is not decided yet. Because the User reads `Tasks.MANAGED.md` directly, the chosen format must be human-readable, not opaque structured data.
+
+The drain contract for `tasks-capture.md` is not yet written. It needs to specify trigger condition (on-demand, on-invocation, or scheduled), preservation behavior on parse failure, and a marker the operator leaves so an empty file is unambiguous (just-drained vs. never-used). Until this is written, the task-manager operator cannot be implemented. On drain, the original line should be moved to the operator log rather than deleted, so nothing is ever truly lost.
 
 The exact archive organization is not decided yet.
 

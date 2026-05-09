@@ -1,0 +1,1 @@
+This file is the User-facing task capture queue. The User writes tasks here in any quick form. The task-manager operator drains entries into Managed/Tasks.MANAGED.md and clears them from this file. To read your active task list, open Managed/Tasks.MANAGED.md.

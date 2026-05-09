@@ -1,1 +1,1 @@
-This file will receive fast capture items before they are routed into whatever Workspace folder, note, tag, or workflow context is most useful.
+This file is for fast, free-form note capture before any routing. Use it for thoughts, references, snippets, and anything that is not a task. Tasks go to tasks-capture.md. Calendar items normally arrive via import; rare freeform calendar mentions can land here and the signal-router will route them.
