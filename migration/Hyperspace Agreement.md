@@ -2,7 +2,7 @@
 
 This is the narrative explanation of Hyperspace. It tells you what the system is, why it is shaped the way it is, and how its main parts relate to each other.
 
-It is **not** the rulebook. All rules — naming, routing, permissions, where things go, how to add an operator, deferred modules — live in [`_agentic/conventions.CORE.md`](_agentic/conventions.CORE.md). When narrative and rules disagree, the rules win, and this document is wrong and must be updated.
+It is **not** the rulebook. All rules — naming, routing, permissions, where things go, how to add an operator, deferred modules — live in [`_agentic/conventions.CORE.md`](_agentic/RULES.md). When narrative and rules disagree, the rules win, and this document is wrong and must be updated.
 
 ## What Hyperspace is
 
