@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "Bash(mv home.md _tmp)",
+      "Bash(mv _tmp Home.md)",
+      "Bash(mv map.md _tmp)",
+      "Bash(mv _tmp Map.md)"
     ]
   }
 }
